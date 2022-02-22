@@ -247,7 +247,7 @@ export async function withdrawAndDump({
   const stateUpdates: Partial<State> = {};
 
   // Update list of pending tokens to determine which token was traded
-  let pendingTokens;
+  let pendingTokens: PendingToken[];
   try {
     pendingTokens = await updatePendingTokens(
       state.pendingTokens,

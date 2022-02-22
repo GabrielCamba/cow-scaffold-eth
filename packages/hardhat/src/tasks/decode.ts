@@ -49,7 +49,7 @@ export interface DetailedInteraction extends Interaction {
 type MaybeToken =
   | Token
   | {
-      index: number;
+      index: number | BigNumberish;
       decimals?: undefined;
       symbol?: undefined;
       nativeFlag?: undefined;

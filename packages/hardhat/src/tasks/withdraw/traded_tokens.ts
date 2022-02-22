@@ -60,7 +60,7 @@ export async function getAllTradedTokens(
     }
   }
 
-  let tokens;
+  let tokens:string[];
   if (trades === null) {
     if (fromBlock === toBlock) {
       throw new Error("Too many events in the same block");
@@ -89,10 +89,10 @@ export async function getAllTradedTokens(
       .flat();
   }
 
-  tokens = new Set(tokens);
-  tokens.delete(BUY_ETH_ADDRESS);
+  let tokensSet = new Set(tokens);
+  tokensSet.delete(BUY_ETH_ADDRESS);
   return {
-    tokens: Array.from(tokens).sort((lhs, rhs) =>
+    tokens: Array.from(tokensSet).sort((lhs, rhs) =>
       lhs.toLowerCase() < rhs.toLowerCase() ? -1 : lhs === rhs ? 0 : 1,
     ),
     toBlock: await numericToBlock,
